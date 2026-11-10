@@ -63,9 +63,32 @@ sudo pacman -Syu
 rustup update stable
 ```
 
+## Project initialization
+
+Run these steps once, before the repository has a `Cargo.toml`. From the repository
+root, initialize a binary package:
+
+```sh
+cargo init --bin --edition 2024 --vcs none .
+```
+
+Use `cargo init` rather than `cargo new` because the directory already exists.
+This creates `Cargo.toml` and `src/main.rs` without setting up another Git
+repository.
+
+Add `eframe` with Wayland support and no X11 backend:
+
+```sh
+cargo add eframe --no-default-features --features default_fonts,glow,wayland
+```
+
+Access `egui` through `eframe::egui`; a separate dependency is not necessary.
+The generated program prints "Hello, world!" until `src/main.rs` is replaced with
+an `eframe` window. Keep the generated `Cargo.lock` tracked.
+
 ## Development
 
-Once the Cargo package exists, use:
+From the repository root, use:
 
 ```sh
 cargo fmt --all

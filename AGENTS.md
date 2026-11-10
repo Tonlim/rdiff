@@ -8,7 +8,7 @@ cross-platform framework or a general-purpose IDE.
 
 - Use stable Rust and edition 2024. Do not require nightly Rust.
 - Use `egui` and `eframe` for the native Linux GUI.
-- Start with one Cargo package. Do not introduce a workspace, additional binaries,
+- Keep one Cargo package. Do not introduce a workspace, additional binaries,
   or a client/server architecture without a concrete need and user agreement.
 - Separate UI code and Git code into modules. Keep command execution and Git
   output parsing out of UI rendering code.
@@ -62,7 +62,7 @@ cross-platform framework or a general-purpose IDE.
 - Add dependencies only for a current requirement. Explain the need and avoid
   overlapping libraries for the same job.
 - Do not add a configuration library, async runtime, database, or alternate test
-  runner as part of initial setup without a demonstrated need.
+  runner without a demonstrated need.
 - Keep code compatible with the project's selected stable toolchain. Do not
   change the toolchain or dependency versions incidentally.
 
@@ -71,7 +71,7 @@ cross-platform framework or a general-purpose IDE.
 - Use standard `rustfmt` formatting. Run the formatter after Rust changes rather
   than only running its check mode.
 - Use Clippy and treat warnings as errors in CI.
-- Configure lint policy centrally in `Cargo.toml` once it exists. Forbid unsafe
+- Configure lint policy centrally in `Cargo.toml`. Forbid unsafe
   code and deny `clippy::dbg_macro`, `clippy::todo`, and `clippy::unimplemented` in
   production code.
 - Start with Clippy's default lint set. Add useful lints individually rather than
@@ -88,7 +88,7 @@ cross-platform framework or a general-purpose IDE.
   access, credentials, GitHub, or the developer's Git configuration.
 - Keep tests deterministic. Avoid sleeps and assumptions about a user's home
   directory, current branch name, or global Git settings.
-- Once the Cargo package exists, run these commands after Rust changes:
+- Run these commands after Rust changes:
 
   ```sh
   cargo fmt --all
@@ -96,8 +96,8 @@ cross-platform framework or a general-purpose IDE.
   cargo test
   ```
 
-- Do not run Cargo commands before a `Cargo.toml` exists. For documentation-only
-  changes, review the diff and check Markdown links and whitespace instead.
+- For documentation-only changes, review the diff and check Markdown links and
+  whitespace instead.
 - Ask the user to verify native GUI appearance and interaction when needed. Do
   not introduce browser-based verification.
 - Report what you verified and what you could not verify. Do not fix unrelated
