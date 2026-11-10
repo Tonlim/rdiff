@@ -24,6 +24,15 @@ The application must support:
 Viewing alone is not the full scope. Editing, staging, and committing are part of
 the intended application.
 
+## Display support
+
+The native Linux build supports Wayland only. It must run directly on Wayland,
+without an X11 backend or a requirement for XWayland.
+
+Disable `eframe`'s default features, which include X11 support. Explicitly enable
+Wayland and the other required native GUI features, including the selected
+renderer. Do not enable the X11 backend.
+
 ## Personal-tool conventions
 
 There is no settings system, settings UI, or application configuration file.
@@ -43,6 +52,7 @@ for concrete requirements rather than anticipated future features.
 - A browser or WASM application. WASM support was considered and dropped in favor
   of simplicity.
 - A terminal UI or a cross-platform desktop project. Linux is the only target.
+- An X11 application or an application that requires XWayland.
 - A client/server application, hosted service, or local web server.
 - A replacement implementation of Git. Repository operations go through the
   installed Git CLI rather than an embedded Git library.

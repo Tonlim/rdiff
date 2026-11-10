@@ -14,7 +14,7 @@ repository state. There is no GitHub API or `gh` CLI integration.
 | Area | Choice |
 | --- | --- |
 | Language | Stable Rust, edition 2024 |
-| Platform | Native Linux only |
+| Platform | Native Linux, Wayland only |
 | GUI | `egui` + `eframe` |
 | Git access | Installed `git` CLI through `std::process::Command` |
 | Project structure | One Cargo package, with separate UI and Git modules |
@@ -29,11 +29,41 @@ client/server split or separate backend binary.
 There is no settings system. Change behavior and defaults in Rust code. Add other
 dependencies only when a concrete requirement justifies them.
 
-## Development
+## Developer installation on Arch Linux
 
-Development requires a stable Rust toolchain, the `rustfmt` and Clippy components,
-Git, and a native Linux desktop environment to run the GUI. Any system build
-dependencies will be documented when the application is scaffolded.
+Use official Arch packages and the
+[ArchWiki's rustup approach](https://wiki.archlinux.org/title/Rust#rustup):
+
+```sh
+sudo pacman -Syu base-devel git rustup wayland libxkbcommon
+```
+
+| Package | Purpose |
+| --- | --- |
+| `base-devel` | Native compiler, linker, build utilities, and `pkgconf` |
+| `git` | Repository development and the Git CLI used by rdiff |
+| `rustup` | Rust toolchain manager |
+| `wayland` | Native Wayland client libraries |
+| `libxkbcommon` | Keyboard handling for the Wayland GUI |
+
+The Arch `rustup` package does not install a Rust toolchain. Install stable Rust,
+rustfmt, Clippy, the language server, and standard-library sources as your normal user, without `sudo`:
+
+```sh
+rustup default stable
+rustup component add rustfmt clippy rust-analyzer rust-src
+```
+
+Do not install Arch's `rust` package alongside `rustup`; the packages conflict.
+Update rustup itself through pacman, not `rustup self update`. Update the system
+packages and stable toolchain separately:
+
+```sh
+sudo pacman -Syu
+rustup update stable
+```
+
+## Development
 
 Once the Cargo package exists, use:
 
