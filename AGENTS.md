@@ -102,3 +102,22 @@ cross-platform framework or a general-purpose IDE.
   not introduce browser-based verification.
 - Report what you verified and what you could not verify. Do not fix unrelated
   test failures as part of the task.
+
+## Agent skills
+
+### Issue tracker
+
+Before publishing specs or tickets, reading issues, or updating issue relationships,
+read [docs/agents/issue-tracker.md](docs/agents/issue-tracker.md). Use GitHub issues in
+`Tonlim/rdiff` through `gh`. This is agent tooling, not application integration.
+
+### Triage labels
+
+Before triaging issues or applying workflow labels, read
+[docs/agents/triage-labels.md](docs/agents/triage-labels.md).
+
+### Domain docs
+
+Before exploring domain concepts or recording terms and decisions, read
+[docs/agents/domain.md](docs/agents/domain.md). This repo uses a single-context
+glossary and ADR layout.
